@@ -25,4 +25,13 @@ export class MoviesService {
       console.log(err.message);
     }
   }
+
+  async getMovieDetail(id) {
+    try {
+      const response = await this.axios.get(`/movie/${id}`);
+      return response.data;
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 }
