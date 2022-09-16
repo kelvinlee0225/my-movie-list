@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { Text } from "@rneui/themed";
-import { MoviePoster, DetailLabelList } from "./index";
+import { MoviePoster } from "./MoviePoster";
+import { DetailLabelsList } from "./DetailLabelsList";
 
 export const TopHalfView = ({
   uri,
@@ -13,7 +14,7 @@ export const TopHalfView = ({
     <View style={styles.container}>
       <View style={styles.posterAndDetails}>
         <MoviePoster imageUri={uri} />
-        <DetailLabelList
+        <DetailLabelsList
           vote_average={vote_average}
           vote_count={vote_count}
           release_date={release_date}

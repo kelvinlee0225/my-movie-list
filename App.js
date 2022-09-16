@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen, MovieDetailScreen } from "./src/screens";
+import { HomeScreen, MovieDetailScreen, SearchScreen } from "./src/screens";
 import { FavoriteIcon } from "./src/components/common";
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +21,7 @@ export default function App() {
             headerRight: (props) => <FavoriteIcon {...props} />,
           }}
         />
+        <Stack.Screen name="Search" component={SearchScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

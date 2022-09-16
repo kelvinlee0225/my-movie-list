@@ -2,7 +2,11 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "@rneui/themed";
 import { DetailLabel } from "./DetailLabel";
 
-export const DetailLabelList = ({ vote_average, vote_count, release_date }) => {
+export const DetailLabelsList = ({
+  vote_average,
+  vote_count,
+  release_date,
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.centeredContainer}>

@@ -46,7 +46,10 @@ export const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient colors={["#00416A", "#E4E5E6"]} style={styles.background}>
-        <TouchableOpacity style={styles.searchBar}>
+        <TouchableOpacity
+          style={styles.searchBar}
+          onPress={() => navigation.navigate("Search")}
+        >
           <Feather name="search" style={styles.iconStyle} />
         </TouchableOpacity>
 
