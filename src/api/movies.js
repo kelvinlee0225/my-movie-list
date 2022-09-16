@@ -34,4 +34,13 @@ export class MoviesService {
       console.log(err.message);
     }
   }
+
+  async searchMovie(keyword) {
+    try {
+      const response = await this.axios.get(`/search/movie?query=${keyword}`);
+      return response.data;
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 }

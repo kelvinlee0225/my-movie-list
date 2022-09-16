@@ -21,7 +21,13 @@ export default function App() {
             headerRight: (props) => <FavoriteIcon {...props} />,
           }}
         />
-        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            headerTitle: "",
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
