@@ -3,8 +3,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { HomeScreen, MovieDetailScreen, SearchScreen } from "./src/screens";
 import { FavoriteIcon } from "./src/components/common";
 import { FavoriteProvider } from "./src/contexts";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Stack = createNativeStackNavigator();
+const queryClient = new QueryClient();
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
 
 export default () => (
   <FavoriteProvider>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
   </FavoriteProvider>
 );
