@@ -1,8 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import { HomeScreen, MovieDetailScreen } from "./src/screens";
+import { FavoriteIcon } from "./src/components/common";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +14,13 @@ export default function App() {
           component={HomeScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="MovieDetail" component={MovieDetailScreen} />
+        <Stack.Screen
+          name="MovieDetail"
+          component={MovieDetailScreen}
+          options={{
+            headerRight: (props) => <FavoriteIcon {...props} />,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
