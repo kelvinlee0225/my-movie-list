@@ -9,7 +9,7 @@ import {
 } from "../components";
 import { StyleSheet, View } from "react-native";
 
-export const HomeScreen = () => {
+export const HomeScreen = ({ navigation }) => {
   const movieService = new MoviesService();
   const [movies, setMovies] = useState([]);
   const [firstMovieWithPoster, setFirstMovieWithPoster] = useState({});
@@ -42,17 +42,9 @@ export const HomeScreen = () => {
 
   return (
     <SafeAreaView>
-      {/* <RenderIf
-        condition={
-          movies.length > 0 && Object.keys(firstMovieWithPoster).length > 0
-        }
-      >
-        <MainTouchableImage firstMovieWithPoster={firstMovieWithPoster} />
-      </RenderIf> */}
-
       <View style={styles.popularMoviesContainer}>
         <PopularMoviesHeader title="Popular Movies in Theaters" />
-        <PopularMoviesHorizontalList movies={movies} />
+        <PopularMoviesHorizontalList movies={movies} navigation={navigation} />
       </View>
 
       <View style={styles.popularMoviesContainer}>
