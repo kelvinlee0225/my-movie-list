@@ -8,7 +8,7 @@ export const PopularMoviesHeader = ({ title }) => {
       <Text h4 style={styles.title}>
         {title}
       </Text>
-      <AntDesign name="right" size={24} color="black" />
+      <AntDesign name="right" size={24} color="white" />
     </TouchableOpacity>
   );
 };
