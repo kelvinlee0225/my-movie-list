@@ -7,12 +7,15 @@ import {
   PopularMoviesHorizontalList,
   RenderIf,
 } from "../components";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { SearchBar } from "../components/common";
+import { Feather } from "@expo/vector-icons";
 
 export const HomeScreen = ({ navigation }) => {
   const movieService = new MoviesService();
   const [movies, setMovies] = useState([]);
   const [firstMovieWithPoster, setFirstMovieWithPoster] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getFirstMovieWithPoster = (fetchedMovies) => {
     for (let movie of fetchedMovies) {
@@ -41,7 +44,11 @@ export const HomeScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
+      <TouchableOpacity style={styles.searchBar}>
+        <Feather name="search" style={styles.iconStyle} />
+      </TouchableOpacity>
+
       <View style={styles.popularMoviesContainer}>
         <PopularMoviesHeader title="Popular Movies in Theaters" />
         <PopularMoviesHorizontalList movies={movies} navigation={navigation} />
@@ -56,7 +63,20 @@ export const HomeScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  searchBar: {
+    backgroundColor: "white",
+    marginHorizontal: 20,
+    marginTop: 10,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginBottom: 10,
+  },
   popularMoviesContainer: {
     marginTop: 10,
+  },
+  iconStyle: {
+    fontSize: 35,
+    alignSelf: "flex-start",
   },
 });
