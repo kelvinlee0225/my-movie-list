@@ -1,25 +1,32 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen, MovieDetailScreen, SearchScreen } from "./src/screens";
+import {
+  MoviesListScreen,
+  MovieDetailScreen,
+  SearchScreen,
+} from "./src/screens";
 import { FavoriteIcon } from "./src/components/common";
+import { FavoriteProvider } from "./src/contexts";
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
+          name="MoviesList"
+          component={MoviesListScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
           name="MovieDetail"
           component={MovieDetailScreen}
-          options={{
-            headerRight: (props) => <FavoriteIcon {...props} />,
-          }}
+          options={({ route }) => ({
+            headerRight: (props) => (
+              <FavoriteIcon {...route.params} {...props} />
+            ),
+          })}
         />
         <Stack.Screen
           name="Search"
@@ -32,3 +39,9 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+export default () => (
+  <FavoriteProvider>
+    <App />
+  </FavoriteProvider>
+);

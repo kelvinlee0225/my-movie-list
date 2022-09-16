@@ -43,7 +43,12 @@ export const SearchScreen = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.itemContainer}
                 onPress={() =>
-                  navigation.navigate("MovieDetail", { movieId: item.id })
+                  navigation.navigate("MovieDetail", {
+                    movieId: item.id,
+                    //These two last params are especially for FavoriteContext
+                    movieTitle: item.title,
+                    moviePoster: item.poster_path,
+                  })
                 }
               >
                 <Image

@@ -21,7 +21,12 @@ export const PopularMoviesHorizontalList = ({ movies, navigation }) => {
           <TouchableOpacity
             style={styles.flatListContainer}
             onPress={() =>
-              navigation.navigate("MovieDetail", { movieId: item.id })
+              navigation.navigate("MovieDetail", {
+                movieId: item.id,
+                //These two last params are especially for FavoriteContext
+                movieTitle: item.title,
+                moviePoster: item.poster_path,
+              })
             }
           >
             {item.poster_path ? (
