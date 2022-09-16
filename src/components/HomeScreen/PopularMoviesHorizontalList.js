@@ -10,10 +10,11 @@ import {
 import { IMAGE_BASE_URL } from "@env";
 import { FontAwesome } from "@expo/vector-icons";
 import { useSearchMovies } from "../../hooks";
-import { RenderIf } from "../common";
+import { FavoriteIcon, RenderIf } from "../common";
 
 export const PopularMoviesHorizontalList = ({ movies, navigation }) => {
   const { loadMore, isLoading } = useSearchMovies();
+
   return (
     <View style={{ flexDirection: "row" }}>
       <FlatList
@@ -51,7 +52,16 @@ export const PopularMoviesHorizontalList = ({ movies, navigation }) => {
                   adjustsFontSizeToFit={true}
                 />
               )}
-              <Text style={styles.title}>{item.title}</Text>
+              <View style={styles.movieLabelAndFavIconContainer}>
+                <Text style={styles.movieTitle}>{item.title}</Text>
+                <FavoriteIcon
+                  movieId={item.id}
+                  movieTitle={item.title}
+                  moviePoster={item.poster_path}
+                  style={{ justifyContent: "flex-end" }}
+                  favoriteIconStyle={styles.favoriteIcon}
+                />
+              </View>
             </TouchableOpacity>
           );
         }}
@@ -76,9 +86,20 @@ const styles = StyleSheet.create({
     width: 160,
     marginBottom: 5,
   },
-  title: {
-    alignSelf: "center",
+  movieLabelAndFavIconContainer: {
+    flexDirection: "row",
+    width: 160,
+    minHeight: "auto",
+  },
+  favoriteIcon: {
+    flex: 2,
+    justifyContent: "flex-end",
+    alignContent: "flex-end",
+    height: "100%",
+  },
+  movieTitle: {
     fontWeight: "700",
+    flex: 8,
   },
   indicator: {
     alignSelf: "center",

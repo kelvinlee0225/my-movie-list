@@ -2,12 +2,9 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "@rneui/themed";
 import { AntDesign } from "@expo/vector-icons";
 
-export const PopularMoviesHeader = ({ title, navigation }) => {
+export const PopularMoviesHeader = ({ title, navigateTo }) => {
   return (
-    <TouchableOpacity
-      style={styles.headerContainer}
-      onPress={() => navigation.navigate("PopularMoviesGrid")}
-    >
+    <TouchableOpacity style={styles.headerContainer} onPress={navigateTo}>
       <Text h4 style={styles.title}>
         {title}
       </Text>
