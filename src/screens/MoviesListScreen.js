@@ -1,21 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { MoviesService } from "../api";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
-  MainTouchableImage,
   PopularMoviesHeader,
   PopularMoviesHorizontalList,
-  RenderIf,
 } from "../components";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { FavoriteContext } from "../contexts";
 
-export const HomeScreen = ({ navigation }) => {
+export const MoviesListScreen = ({ navigation }) => {
   const movieService = new MoviesService();
   const [movies, setMovies] = useState([]);
   const [firstMovieWithPoster, setFirstMovieWithPoster] = useState({});
-  const [searchTerm, setSearchTerm] = useState("");
+  const { favoriteMovies } = useContext(FavoriteContext);
 
   const getFirstMovieWithPoster = (fetchedMovies) => {
     for (let movie of fetchedMovies) {
@@ -43,6 +42,18 @@ export const HomeScreen = ({ navigation }) => {
     getMovies();
   }, []);
 
+  const memoizedFavoriteMovies = useMemo(() => {
+    const favMoviesArray = [];
+    favoriteMovies.forEach((favoriteMovie) => {
+      return favMoviesArray.push({
+        id: favoriteMovie.id,
+        title: favoriteMovie.title,
+        poster_path: favoriteMovie.posterUri,
+      });
+    });
+    return favMoviesArray;
+  }, [favoriteMovies.length]);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient colors={["#00416A", "#E4E5E6"]} style={styles.background}>
@@ -62,8 +73,11 @@ export const HomeScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.popularMoviesContainer}>
-          <PopularMoviesHeader title="Favorites" />
-          <PopularMoviesHorizontalList movies={movies} />
+          <PopularMoviesHeader title="Your Favorites" />
+          <PopularMoviesHorizontalList
+            movies={memoizedFavoriteMovies}
+            navigation={navigation}
+          />
         </View>
       </LinearGradient>
     </SafeAreaView>
