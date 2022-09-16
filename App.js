@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
+  FavoriteMoviesGridScreen,
   HomeScreen,
   MovieDetailScreen,
   PopularMoviesGridScreen,
@@ -41,6 +42,13 @@ function App() {
         <Stack.Screen
           name="PopularMoviesGrid"
           component={PopularMoviesGridScreen}
+          options={{
+            headerTitle: "",
+          }}
+        />
+        <Stack.Screen
+          name="FavoriteMoviesGrid"
+          component={FavoriteMoviesGridScreen}
           options={{
             headerTitle: "",
           }}

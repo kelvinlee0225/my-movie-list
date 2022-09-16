@@ -55,7 +55,7 @@ export const HomeScreen = ({ navigation }) => {
         <View style={styles.popularMoviesContainer}>
           <PopularMoviesHeader
             title="Popular Movies in Theaters"
-            navigation={navigation}
+            navigateTo={() => navigation.navigate("PopularMoviesGrid")}
           />
           <PopularMoviesHorizontalList
             movies={fetchedMovies}
@@ -64,7 +64,10 @@ export const HomeScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.popularMoviesContainer}>
-          <PopularMoviesHeader title="Your Favorites" />
+          <PopularMoviesHeader
+            title="Your Favorites"
+            navigateTo={() => navigation.navigate("FavoriteMoviesGrid")}
+          />
           <PopularMoviesHorizontalList
             movies={memoizedFavoriteMovies}
             navigation={navigation}

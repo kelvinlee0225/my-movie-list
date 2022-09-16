@@ -8,6 +8,7 @@ export const FavoriteIcon = ({
   movieId,
   movieTitle,
   moviePoster,
+  favoriteIconStyle,
   ...props
 }) => {
   const { addToFavorites, removeFromFavorites, hasMovie } =
@@ -34,10 +35,20 @@ export const FavoriteIcon = ({
       <RenderIf
         condition={pressed}
         otherwise={
-          <MaterialIcons name="favorite-border" size={24} color="black" />
+          <MaterialIcons
+            name="favorite-border"
+            size={24}
+            color="black"
+            style={favoriteIconStyle}
+          />
         }
       >
-        <MaterialIcons name="favorite" size={24} color="red" />
+        <MaterialIcons
+          name="favorite"
+          size={24}
+          color="red"
+          style={favoriteIconStyle}
+        />
       </RenderIf>
     </TouchableOpacity>
   );
