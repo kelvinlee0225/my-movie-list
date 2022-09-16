@@ -2,12 +2,12 @@ import moment from "moment";
 import { BaseService } from "./BaseService";
 
 export class MoviesService extends BaseService {
-  async getMoviesByRating() {
+  async getMoviesByRating({ page = 1 }) {
     try {
       const endDate = moment(new Date()).format("YYYY-MM-DD");
       const startDate = moment(startDate).subtract(47, "days");
       const response = await this.axios.get(
-        `/discover/movie?primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&sort_by=vote_average.desc`
+        `/discover/movie?primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&sort_by=vote_average.desc&page=${page}`
       );
       return response.data;
     } catch (err) {
