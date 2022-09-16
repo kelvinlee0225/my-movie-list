@@ -1,5 +1,4 @@
 import { useContext, useEffect, useMemo, useState } from "react";
-import { MoviesService } from "../api";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   PopularMoviesHeader,
@@ -54,7 +53,10 @@ export const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
 
         <View style={styles.popularMoviesContainer}>
-          <PopularMoviesHeader title="Popular Movies in Theaters" />
+          <PopularMoviesHeader
+            title="Popular Movies in Theaters"
+            navigation={navigation}
+          />
           <PopularMoviesHorizontalList
             movies={fetchedMovies}
             navigation={navigation}
