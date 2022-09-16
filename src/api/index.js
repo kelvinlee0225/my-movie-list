@@ -1,1 +1,2 @@
-export * from "./movies";
+export * from "./MovieService";
+export * from "./AccountService";
