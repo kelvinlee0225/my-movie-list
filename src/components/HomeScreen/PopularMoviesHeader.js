@@ -5,7 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 export const PopularMoviesHeader = ({ title }) => {
   return (
     <TouchableOpacity style={styles.headerContainer}>
-      <Text h4 style={{ fontFamily: "Bebas Neue" }}>
+      <Text h4 style={styles.title}>
         {title}
       </Text>
       <AntDesign name="right" size={24} color="black" />
@@ -20,5 +20,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginRight: 5,
     marginLeft: 10,
+  },
+  title: {
+    color: "white",
   },
 });
