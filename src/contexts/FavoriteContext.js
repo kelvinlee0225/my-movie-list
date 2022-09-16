@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 
 export const FavoriteContext = React.createContext();
 
@@ -15,25 +15,29 @@ const favoriteListReducer = (state, actions) => {
 
 export const FavoriteProvider = ({ children }) => {
   const [state, dispatch] = useReducer(favoriteListReducer, []);
+  const [affectedMovieId, setAffectedMovieId] = useState("");
 
   const addToFavorites = ({ id, title, posterUri }) => {
     dispatch({ type: "add_to_favorites", payload: { id, title, posterUri } });
+    if (affectedMovieId !== "") setAffectedMovieId("");
   };
 
   const removeFromFavorites = (id) => {
     dispatch({ type: "remove_from_favorites", payload: id });
+    setAffectedMovieId(id);
   };
 
   const hasMovie = (id) => {
     const movie = state.find((movie) => movie.id === id);
     return !!movie;
   };
-  //   const favoriteMovies = new Map();
 
   return (
     <FavoriteContext.Provider
       value={{
         favoriteMovies: state,
+        favoriteMoviesLength: state.length,
+        affectedMovieId,
         addToFavorites,
         removeFromFavorites,
         hasMovie,

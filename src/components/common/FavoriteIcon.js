@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RenderIf } from "./RenderIf";
 import { FavoriteContext } from "../../contexts";
 
@@ -11,9 +11,18 @@ export const FavoriteIcon = ({
   favoriteIconStyle,
   ...props
 }) => {
-  const { addToFavorites, removeFromFavorites, hasMovie } =
-    useContext(FavoriteContext);
+  const {
+    addToFavorites,
+    removeFromFavorites,
+    hasMovie,
+    favoriteMoviesLength,
+    affectedMovieId,
+  } = useContext(FavoriteContext);
   const [pressed, setPressed] = useState(hasMovie(movieId));
+
+  useEffect(() => {
+    if (affectedMovieId === movieId) setPressed(false);
+  }, [favoriteMoviesLength]);
 
   return (
     <TouchableOpacity
