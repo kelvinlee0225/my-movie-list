@@ -31,4 +31,5 @@ Popular movies grid list | Favorite movies grid list
 ## Built With
 
 - [ReactNative](https://reactnative.dev/docs/environment-setup) - A FrameWork to build mobile app
-- [TMDBAPI](https://www.themoviedb.org/documentation/api?language=en) - Open-source TMDB API for movie streaming lovers.
+- [TMDBAPI](https://www.themoviedb.org/documentation/api?language=en) - Open-source TMDB API for movie streaming lovers
+- [Expo](https://docs.expo.dev/) - A developer tool for creating projects, viewing logs, opening on your device, publishing
