@@ -8,8 +8,8 @@ import {
   RenderIf,
 } from "../components";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { SearchBar } from "../components/common";
 import { Feather } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const HomeScreen = ({ navigation }) => {
   const movieService = new MoviesService();
@@ -45,28 +45,37 @@ export const HomeScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TouchableOpacity style={styles.searchBar}>
-        <Feather name="search" style={styles.iconStyle} />
-      </TouchableOpacity>
+      <LinearGradient colors={["#00416A", "#E4E5E6"]} style={styles.background}>
+        <TouchableOpacity style={styles.searchBar}>
+          <Feather name="search" style={styles.iconStyle} />
+        </TouchableOpacity>
 
-      <View style={styles.popularMoviesContainer}>
-        <PopularMoviesHeader title="Popular Movies in Theaters" />
-        <PopularMoviesHorizontalList movies={movies} navigation={navigation} />
-      </View>
+        <View style={styles.popularMoviesContainer}>
+          <PopularMoviesHeader title="Popular Movies in Theaters" />
+          <PopularMoviesHorizontalList
+            movies={movies}
+            navigation={navigation}
+          />
+        </View>
 
-      <View style={styles.popularMoviesContainer}>
-        <PopularMoviesHeader title="Favorites" />
-        <PopularMoviesHorizontalList movies={movies} />
-      </View>
+        <View style={styles.popularMoviesContainer}>
+          <PopularMoviesHeader title="Favorites" />
+          <PopularMoviesHorizontalList movies={movies} />
+        </View>
+      </LinearGradient>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    width: "100%",
+    height: "100%",
+  },
   searchBar: {
     backgroundColor: "white",
     marginHorizontal: 20,
-    marginTop: 10,
+    marginTop: 20,
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 5,
