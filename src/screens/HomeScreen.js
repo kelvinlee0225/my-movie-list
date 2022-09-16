@@ -9,12 +9,12 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { FavoriteContext } from "../contexts";
+import { useSearchMovies } from "../hooks";
 
 export const HomeScreen = ({ navigation }) => {
-  const movieService = new MoviesService();
-  const [movies, setMovies] = useState([]);
   const [firstMovieWithPoster, setFirstMovieWithPoster] = useState({});
   const { favoriteMovies } = useContext(FavoriteContext);
+  const { data: fetchedMovies } = useSearchMovies();
 
   const getFirstMovieWithPoster = (fetchedMovies) => {
     for (let movie of fetchedMovies) {
@@ -26,21 +26,10 @@ export const HomeScreen = ({ navigation }) => {
     return false;
   };
 
-  const getMovies = async () => {
-    const result = await movieService.getMoviesByRating();
-    const fetchedMovies = result.results;
-
-    if (fetchedMovies.length > 0) {
-      setMovies(fetchedMovies);
-
-      if (Object.keys(firstMovieWithPoster).length < 1)
-        getFirstMovieWithPoster(fetchedMovies);
-    }
-  };
-
   useEffect(() => {
-    getMovies();
-  }, []);
+    if (Object.keys(firstMovieWithPoster).length < 1)
+      getFirstMovieWithPoster(fetchedMovies);
+  }, [fetchedMovies.length]);
 
   const memoizedFavoriteMovies = useMemo(() => {
     const favMoviesArray = [];
@@ -67,7 +56,7 @@ export const HomeScreen = ({ navigation }) => {
         <View style={styles.popularMoviesContainer}>
           <PopularMoviesHeader title="Popular Movies in Theaters" />
           <PopularMoviesHorizontalList
-            movies={movies}
+            movies={fetchedMovies}
             navigation={navigation}
           />
         </View>
