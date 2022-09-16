@@ -9,7 +9,7 @@ import {
 import { IMAGE_BASE_URL } from "@env";
 import { FontAwesome } from "@expo/vector-icons";
 
-export const PopularMoviesHorizontalList = ({ movies }) => {
+export const PopularMoviesHorizontalList = ({ movies, navigation }) => {
   return (
     <FlatList
       horizontal
@@ -18,7 +18,12 @@ export const PopularMoviesHorizontalList = ({ movies }) => {
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => {
         return (
-          <TouchableOpacity style={styles.flatListContainer}>
+          <TouchableOpacity
+            style={styles.flatListContainer}
+            onPress={() =>
+              navigation.navigate("MovieDetail", { movieId: item.id })
+            }
+          >
             {item.poster_path ? (
               <Image
                 style={styles.imageOrIcon}
