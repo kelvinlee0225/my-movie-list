@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, View } from "react-native";
-import { RenderIf } from "../RenderIf";
+import { RenderIf } from "../common";
 import { Text, Button } from "@rneui/themed";
 
 export const BottomHalfView = ({ genres, overview }) => {

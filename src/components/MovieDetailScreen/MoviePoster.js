@@ -1,5 +1,5 @@
 import { Image, StyleSheet, View } from "react-native";
-import { RenderIf } from "../RenderIf";
+import { RenderIf } from "../common";
 import { FontAwesome } from "@expo/vector-icons";
 
 export const MoviePoster = ({ imageUri }) => {

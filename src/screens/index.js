@@ -1,3 +1,3 @@
-export * from "./MoviesListScreen";
+export * from "./HomeScreen";
 export * from "./SearchScreen";
 export * from "./MovieDetailScreen";

@@ -10,7 +10,7 @@ import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { FavoriteContext } from "../contexts";
 
-export const MoviesListScreen = ({ navigation }) => {
+export const HomeScreen = ({ navigation }) => {
   const movieService = new MoviesService();
   const [movies, setMovies] = useState([]);
   const [firstMovieWithPoster, setFirstMovieWithPoster] = useState({});

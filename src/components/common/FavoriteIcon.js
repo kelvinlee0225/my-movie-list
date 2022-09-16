@@ -1,7 +1,7 @@
 import { TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useContext, useState } from "react";
-import { RenderIf } from "../RenderIf";
+import { RenderIf } from "./RenderIf";
 import { FavoriteContext } from "../../contexts";
 
 export const FavoriteIcon = ({

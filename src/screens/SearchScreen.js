@@ -10,7 +10,7 @@ import { SearchBar } from "../components/common";
 import { LinearGradient } from "expo-linear-gradient";
 import { MoviesService } from "../api";
 import { Text } from "@rneui/themed";
-import { RenderIf } from "../components";
+import { RenderIf } from "../components/common";
 import { IMAGE_BASE_URL } from "@env";
 
 export const SearchScreen = ({ navigation }) => {
