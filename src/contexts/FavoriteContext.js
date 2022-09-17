@@ -15,16 +15,19 @@ const favoriteListReducer = (state, actions) => {
 
 export const FavoriteProvider = ({ children }) => {
   const [state, dispatch] = useReducer(favoriteListReducer, []);
-  const [affectedMovieId, setAffectedMovieId] = useState("");
+  const [affectedMovie, setAffectedMovie] = useState({
+    id: "",
+    actionType: "",
+  });
 
   const addToFavorites = ({ id, title, posterUri }) => {
     dispatch({ type: "add_to_favorites", payload: { id, title, posterUri } });
-    if (affectedMovieId !== "") setAffectedMovieId("");
+    setAffectedMovie({ id, actionType: "addToFavorites" });
   };
 
   const removeFromFavorites = (id) => {
     dispatch({ type: "remove_from_favorites", payload: id });
-    setAffectedMovieId(id);
+    setAffectedMovie({ id, actionType: "removeFromFavorites" });
   };
 
   const hasMovie = (id) => {
@@ -37,7 +40,7 @@ export const FavoriteProvider = ({ children }) => {
       value={{
         favoriteMovies: state,
         favoriteMoviesLength: state.length,
-        affectedMovieId,
+        affectedMovie,
         addToFavorites,
         removeFromFavorites,
         hasMovie,

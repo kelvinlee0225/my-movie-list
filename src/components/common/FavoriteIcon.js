@@ -16,12 +16,15 @@ export const FavoriteIcon = ({
     removeFromFavorites,
     hasMovie,
     favoriteMoviesLength,
-    affectedMovieId,
+    affectedMovie,
   } = useContext(FavoriteContext);
   const [pressed, setPressed] = useState(hasMovie(movieId));
 
   useEffect(() => {
-    if (affectedMovieId === movieId) setPressed(false);
+    if (affectedMovie.id === movieId) {
+      if (affectedMovie.actionType === "addToFavorites") setPressed(true);
+      else setPressed(false);
+    }
   }, [favoriteMoviesLength]);
 
   return (
@@ -30,14 +33,12 @@ export const FavoriteIcon = ({
       onPress={() => {
         if (hasMovie(movieId)) {
           removeFromFavorites(movieId);
-          setPressed(false);
         } else {
           addToFavorites({
             id: movieId,
             title: movieTitle,
             posterUri: moviePoster,
           });
-          setPressed(true);
         }
       }}
     >
