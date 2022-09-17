@@ -15,17 +15,21 @@ Main screen | Main Screen with favorite movies
 :--------:|:--------:
 ![main-screen](screenshots/main-screen.jpg) | ![main-screen-with-favorite-movies](screenshots/main-with-favorite-movie-screen.jpg)
 
-Search screen | Search screen with results
-:-----------:|:-----------:
-![search-screen](screenshots/search-screen.jpg) | ![search-screen-with-results](screenshots/search-with-results-screen.jpg)
-
 Movie Detail screen
 :----------------:
 ![movie-detail](screenshots/movie-detail-screen.jpg)
 
-Popular movies grid list | Favorite movies grid list
+Search screen | Search screen with results
+:-----------:|:-----------:
+![search-screen](screenshots/search-screen.jpg) | ![search-screen-with-results](screenshots/search-with-results-screen.jpg)
+
+Popular movies grid list | Popular movies grid list 
 :-----------------:|:----------------------:
-![popular-movies-grid-list](screenshots/popular-movies-grid-list-screen.jpg) | ![favorite-movies-grid-list](screenshots/favorite-movies-grid-list-screen.jpg)
+![popular-movies-grid-list](screenshots/popular-movies-grid-list-screen.jpg) | ![popular-movies-grid-list-with-another-sort-option](screenshots/popular-movies-grid-list-screen-with-another-sort-option.jpg)
+
+Favorite movies grid list
+:----------------:
+![favorite-movies-grid-list](screenshots/favorite-movies-grid-list-screen.jpg)
 
 
 ## Built With
