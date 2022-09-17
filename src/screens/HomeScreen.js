@@ -1,19 +1,19 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
+  Header,
   PopularMoviesHeader,
   PopularMoviesHorizontalList,
 } from "../components";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { FavoriteContext } from "../contexts";
-import { useSearchMovies } from "../hooks";
+import { FavoriteContext, MoviesContext } from "../contexts";
 
 export const HomeScreen = ({ navigation }) => {
   const [firstMovieWithPoster, setFirstMovieWithPoster] = useState({});
+
   const { favoriteMovies } = useContext(FavoriteContext);
-  const { data: fetchedMovies } = useSearchMovies();
+  const { fetchedMovies } = useContext(MoviesContext);
 
   const getFirstMovieWithPoster = (fetchedMovies) => {
     for (let movie of fetchedMovies) {
@@ -45,18 +45,14 @@ export const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient colors={["#00416A", "#E4E5E6"]} style={styles.background}>
-        <TouchableOpacity
-          style={styles.searchBar}
-          onPress={() => navigation.navigate("Search")}
-        >
-          <Feather name="search" style={styles.iconStyle} />
-        </TouchableOpacity>
+        <Header navigation={navigation} />
 
         <View style={styles.popularMoviesContainer}>
           <PopularMoviesHeader
             title="Popular Movies in Theaters"
             navigateTo={() => navigation.navigate("PopularMoviesGrid")}
           />
+
           <PopularMoviesHorizontalList
             movies={fetchedMovies}
             navigation={navigation}
@@ -71,6 +67,7 @@ export const HomeScreen = ({ navigation }) => {
           <PopularMoviesHorizontalList
             movies={memoizedFavoriteMovies}
             navigation={navigation}
+            type="favoriteList"
           />
         </View>
       </LinearGradient>
