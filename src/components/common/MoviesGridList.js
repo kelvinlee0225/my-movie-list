@@ -9,13 +9,16 @@ import {
 import { IMAGE_BASE_URL } from "@env";
 import { Text } from "@rneui/themed";
 import { FontAwesome } from "@expo/vector-icons";
-import { useSearchMovies } from "../../hooks";
 import { RenderIf } from "./RenderIf";
 
-export const MoviesGridList = ({ fetchedMovies, navigation }) => {
-  const { loadMore, isLoading } = useSearchMovies();
+export const MoviesGridList = ({
+  fetchedMovies,
+  navigation,
+  loadMore,
+  isFetching,
+}) => {
   return (
-    <View>
+    <>
       <FlatList
         data={fetchedMovies}
         keyExtractor={(item) => item.id}
@@ -55,13 +58,13 @@ export const MoviesGridList = ({ fetchedMovies, navigation }) => {
             </TouchableOpacity>
           );
         }}
-        ListFooterComponent={() => <View style={{ height: 20 }} />}
+        ListFooterComponent={() => <View style={{ height: 10 }} />}
         onEndReached={loadMore}
       />
-      <RenderIf condition={isLoading}>
+      <RenderIf condition={isFetching}>
         <ActivityIndicator size={50} color="#00ff00" style={styles.indicator} />
       </RenderIf>
-    </View>
+    </>
   );
 };
 
@@ -86,6 +89,5 @@ const styles = StyleSheet.create({
   indicator: {
     alignSelf: "center",
     justifyContent: "center",
-    height: 185,
   },
 });

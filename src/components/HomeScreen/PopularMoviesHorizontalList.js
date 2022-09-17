@@ -9,11 +9,16 @@ import {
 } from "react-native";
 import { IMAGE_BASE_URL } from "@env";
 import { FontAwesome } from "@expo/vector-icons";
-import { useSearchMovies } from "../../hooks";
 import { FavoriteIcon, RenderIf } from "../common";
+import { useContext } from "react";
+import { MoviesContext } from "../../contexts";
 
-export const PopularMoviesHorizontalList = ({ movies, navigation }) => {
-  const { loadMore, isLoading } = useSearchMovies();
+export const PopularMoviesHorizontalList = ({
+  movies,
+  navigation,
+  type = undefined,
+}) => {
+  const { loadMore, isFetching } = useContext(MoviesContext);
 
   return (
     <View style={{ flexDirection: "row" }}>
@@ -65,9 +70,10 @@ export const PopularMoviesHorizontalList = ({ movies, navigation }) => {
             </TouchableOpacity>
           );
         }}
+        // onEndReachedThreshold={5}
         onEndReached={loadMore}
       />
-      <RenderIf condition={isLoading}>
+      <RenderIf condition={isFetching && type !== "favoriteList"}>
         <ActivityIndicator size={50} color="#00ff00" style={styles.indicator} />
       </RenderIf>
     </View>

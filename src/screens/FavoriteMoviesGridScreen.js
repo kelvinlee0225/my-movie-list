@@ -1,5 +1,4 @@
 import { MoviesGridList, RenderIf } from "../components/common";
-import { useSearchMovies } from "../hooks";
 import { Text } from "@rneui/themed";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet } from "react-native";

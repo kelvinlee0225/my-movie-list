@@ -1,18 +1,24 @@
 import { MoviesGridList, RenderIf } from "../components/common";
-import { useSearchMovies } from "../hooks";
 import { Text } from "@rneui/themed";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet } from "react-native";
+import { useContext } from "react";
+import { MoviesContext } from "../contexts";
 
 export const PopularMoviesGridScreen = ({ navigation }) => {
-  const { data: fetchedMovies } = useSearchMovies();
+  const { fetchedMovies, loadMore, isFetching } = useContext(MoviesContext);
   return (
     <LinearGradient colors={["#00416A", "#E4E5E6"]} style={styles.background}>
       <Text h2 style={styles.title}>
         Popular Movies in Theaters
       </Text>
       <RenderIf condition={fetchedMovies.length > 0}>
-        <MoviesGridList fetchedMovies={fetchedMovies} navigation={navigation} />
+        <MoviesGridList
+          fetchedMovies={fetchedMovies}
+          navigation={navigation}
+          loadMore={loadMore}
+          isFetching={isFetching}
+        />
       </RenderIf>
     </LinearGradient>
   );
