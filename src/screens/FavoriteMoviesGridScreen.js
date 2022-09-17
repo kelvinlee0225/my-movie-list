@@ -23,7 +23,7 @@ export const FavoriteMoviesGridScreen = ({ navigation }) => {
   return (
     <LinearGradient colors={["#00416A", "#E4E5E6"]} style={styles.background}>
       <Text h2 style={styles.title}>
-        Popular Movies in Theaters
+        Your favorites
       </Text>
       <RenderIf condition={favoriteMovies.length > 0}>
         <MoviesGridList
