@@ -3,15 +3,7 @@ import { Feather } from "@expo/vector-icons";
 import { Dropdown } from "react-native-element-dropdown";
 import { useContext } from "react";
 import { MoviesContext } from "../../contexts";
-
-const options = [
-  { label: "Rating DESC", value: "vote_average.desc" },
-  { label: "Rating ASC", value: "vote_average.asc" },
-  { label: "Name Z-A", value: "original_title.desc" },
-  { label: "Name A-Z", value: "original_title.asc" },
-  { label: "Year of Release DESC", value: "primary_release_date.desc" },
-  { label: "Year of Release ASC", value: "primary_release_date.asc" },
-];
+import { sortOptions } from "../../constants";
 
 export const Header = ({ navigation }) => {
   const { selectedSortBy, setSelectedSortBy } = useContext(MoviesContext);
@@ -44,7 +36,7 @@ export const Header = ({ navigation }) => {
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={selectedTextSyleHandler(selectedSortBy)}
         iconStyle={styles.dropdownIconStyle}
-        data={options}
+        data={sortOptions}
         maxHeight={300}
         labelField="label"
         valueField="value"
@@ -86,9 +78,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flex: 3,
   },
-  icon: {
-    marginRight: 5,
-  },
   placeholderStyle: {
     fontSize: 16,
   },
@@ -100,9 +89,5 @@ const styles = StyleSheet.create({
   dropdownIconStyle: {
     width: 20,
     height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
   },
 });
